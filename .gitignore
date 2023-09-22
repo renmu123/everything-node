@@ -1,0 +1,13 @@
+# Intellij
+*.iml
+.idea
+*.code-workspace
+.node-version
+
+# npm
+node_modules
+
+# build
+*.js.map
+main.js
+dist
