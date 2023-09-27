@@ -2,6 +2,7 @@ import typescript from "@rollup/plugin-typescript";
 import copy from "rollup-plugin-copy";
 import dts from "rollup-plugin-dts";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
+import commonjs from "@rollup/plugin-commonjs";
 
 export default [
   {
@@ -9,18 +10,17 @@ export default [
     output: [
       {
         file: "dist/index.mjs",
-        sourcemap: "inline",
         format: "es",
         exports: "named",
       },
       {
         file: "dist/index.cjs",
-        sourcemap: "inline",
         format: "cjs",
       },
     ],
     plugins: [
       typescript(),
+      commonjs(),
       nodeResolve({ browser: false }),
       copy({
         targets: [{ src: "src/bin/es.exe", dest: "dist/bin" }],

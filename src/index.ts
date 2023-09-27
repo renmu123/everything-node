@@ -2,9 +2,6 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { spawn } from "child_process";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 interface Result {
   type: "dir" | "file";
   path: string;
@@ -57,9 +54,16 @@ export default class Everything {
     sortBy: [],
   };
   rawData: string[] = [];
-  execPath: string = path.join(__dirname, "bin", "es.exe");
 
-  constructor() {}
+  execPath: string = "";
+
+  constructor(autoSetExecPath = true) {
+    if (autoSetExecPath) {
+      __filename = fileURLToPath(import.meta.url);
+      __dirname = path.dirname(__filename);
+      this.setExecPath(path.join(__dirname, "bin", "es.exe"));
+    }
+  }
   addOptions(value: string) {
     // if (value.startsWith("-sort")) {
     //   console.warn("If you want to sort, use the sortBy method.");
