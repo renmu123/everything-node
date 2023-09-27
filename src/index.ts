@@ -59,8 +59,8 @@ export default class Everything {
 
   constructor(autoSetExecPath = true) {
     if (autoSetExecPath) {
-      __filename = fileURLToPath(import.meta.url);
-      __dirname = path.dirname(__filename);
+      const __filename1 = fileURLToPath(import.meta.url);
+      const __dirname = path.dirname(__filename1);
       this.setExecPath(path.join(__dirname, "bin", "es.exe"));
     }
   }
@@ -126,8 +126,10 @@ export default class Everything {
   }
 
   private async spawnChild(options?: string[]) {
+    if (!this.execPath) throw new Error("execPath is not set.");
+
     return new Promise<string>(async (resolve, reject) => {
-      const child = spawn(this.execPath, options, {
+      const child = spawn(`chcp 65001>nul && ${this.execPath}`, options, {
         shell: true,
       });
 
