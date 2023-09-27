@@ -8,16 +8,15 @@ export default [
     input: "src/index.ts",
     output: [
       {
-        file: "dist/index.esm.js",
+        file: "dist/index.mjs",
         sourcemap: "inline",
         format: "es",
         exports: "named",
       },
       {
-        file: "dist/index.cjs.js",
+        file: "dist/index.cjs",
         sourcemap: "inline",
         format: "cjs",
-        exports: "named",
       },
     ],
     plugins: [

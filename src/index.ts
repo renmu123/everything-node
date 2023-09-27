@@ -233,6 +233,6 @@ export default class Everything {
 }
 
 // Use ^ to escape \, &, |, >, < and ^.
-export const escaped = (s: string) => {
+const escaped = (s: string) => {
   return s.replaceAll(/([\\&|><^])/g, "^$1");
 };
