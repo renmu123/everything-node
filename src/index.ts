@@ -129,7 +129,7 @@ export default class Everything {
     if (!this.execPath) throw new Error("execPath is not set.");
 
     return new Promise<string>(async (resolve, reject) => {
-      const child = spawn(`chcp 65001>nul && ${this.execPath}`, options, {
+      const child = spawn(`${this.execPath}`, options, {
         shell: true,
       });
 
