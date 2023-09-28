@@ -129,7 +129,7 @@ export default class Everything {
     if (!this.execPath) throw new Error("execPath is not set.");
 
     return new Promise<string>(async (resolve, reject) => {
-      const child = spawn(`${this.execPath}`, options, {
+      const child = spawn(`chcp 65001>nul && ${this.execPath}`, options, {
         shell: true,
       });
 
@@ -187,7 +187,7 @@ export default class Everything {
   }
   async getTotal() {
     const options = this.generateOptions();
-    let count = await this.spawnChild([...options, "-get-result-count"]);
+    let count = await this.spawnChild(["-get-result-count", ...options]);
     return Number(count);
   }
   generateOptions() {
@@ -227,7 +227,7 @@ export default class Everything {
       if (this.options.searchOptions?.regex) {
         options.push(`-regex "${escaped(this.options.searchText)}"`);
       } else {
-        options.push(`-r ${escaped(this.options.searchText)}`);
+        options.push(`${escaped(this.options.searchText)}`);
       }
     }
     return [...this.rawOptions, ...options];

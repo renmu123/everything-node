@@ -1,3 +1,7 @@
+# 0.1.6
+
+fix serach options
+
 # 0.1.5
 
 update readme and set chcp=65001
